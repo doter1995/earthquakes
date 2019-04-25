@@ -3,4 +3,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"9B6d":[function(require,module,exports) {
 "use strict";var e=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var n={};if(null!=e)for(var r in e)Object.hasOwnProperty.call(e,r)&&(n[r]=e[r]);return n.default=e,n};exports.__esModule=!0;var n=e(require("three")),r=new n.WebGLRenderer({antialias:!0}),i=new n.Scene,t=new n.PerspectiveCamera(75,window.innerWidth/window.innerHeight,.1,1e3);document.body.appendChild(r.domElement),r.setSize(window.innerWidth,window.innerHeight);var o=new n.BoxGeometry(1,1,1),a=new n.MeshBasicMaterial({color:65280}),d=new n.Mesh(o,a);function s(){d.rotation.x+=.01,d.rotation.y+=.01,requestAnimationFrame(s),r.render(i,t)}i.add(d),d.position.z-=5,s();
 },{"three":"gBK8"}]},{},["9B6d"], null)
-//# sourceMappingURL=/src.499137c2.js.map
+//# sourceMappingURL=https://doter1995.github.io/earthquakes/src.499137c2.js.map
