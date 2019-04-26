@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build"
+    "start": "npm run copyDir && parcel index.html",
+    "build": "npm run copyDir && parcel build index.html --public-url https://doter1995.github.io/earthquakes/",
+    "copyDir": "cp -r ./public ./dist",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "three.js"
@@ -13,10 +15,15 @@
   "author": "wdzhang",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.12.3",
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "three": "^0.104.0"
+    "d3": "^5.9.2",
+    "d3-array": "^2.0.3",
+    "d3-dsv": "^1.1.1",
+    "three": "^0.104.0",
+    "topojson": "^3.0.2"
   }
 }
