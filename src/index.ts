@@ -1,15 +1,7 @@
 import WorldGroup from "./WordSegment";
-import QuakeSource from "./QuakeSource";
+import Stats from "stats.js"
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
-import "three/examples/js/libs/stats.min.js";
-import {
-  Group, Mesh,
-  MeshBasicMaterial,
-  PerspectiveCamera,
-  Points,
-  Scene,
-  WebGLRenderer
-} from "three";
+import {Group, PerspectiveCamera, Scene, WebGLRenderer} from "three";
 import EarthQuakes from "./EarthQuakes";
 
 let renderer = new WebGLRenderer({antialias: true});
@@ -32,7 +24,7 @@ scene.add(wordGroup);
 // scene.add(qs);
 let earthQuakes = new EarthQuakes()
 scene.add(earthQuakes);
-let stats = window.Stats();
+let stats = new Stats();
 document.body.appendChild(stats.dom);
 
 let control = new OrbitControls(camera, renderer.domElement);
