@@ -8,7 +8,7 @@
     "build": " npm run copyDir && parcel build index.html --public-url https://doter1995.github.io/earthquakes/",
     "deleteDir": "rm -rf ./dist",
     "copyDir": "mkdir -p ./dist && cp -rf ./public ./dist/",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn deleteDir && yarn build && gh-pages -d dist"
   },
   "keywords": [
     "three.js"
