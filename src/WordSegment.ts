@@ -22,7 +22,7 @@ export default class WordSegment extends Group {
 
   init() {
     this.addSphere();
-    new FileLoader().load('/public/data/world.json', (data: string) => {
+    new FileLoader().load('./public/data/world.json', (data: string) => {
       let dataSet = JSON.parse(data);
       this.add(wireframe(graticule10(), 200, new LineBasicMaterial({color: 0x444444})));
       this.add(wireframe(topoJson.mesh(dataSet), 200.5, new LineBasicMaterial({color: 0x34ace0})));

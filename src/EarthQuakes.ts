@@ -1,12 +1,13 @@
 import {Group} from "three";
 import {csvParse} from "d3-dsv";
-import QuakeSource from './QuakeSource';
+import QuakeSources from './QuakeSources';
 
 export default class EarthQuakes extends Group {
   dataSet = [];
   current: number = 0;
   playState = "ready";
   interval;
+
   constructor() {
     super()
     this.getData();
@@ -21,21 +22,24 @@ export default class EarthQuakes extends Group {
   }
 
   updatePoints() {
-    if(this.current==this.dataSet.length){
+    if (this.current == this.dataSet.length) {
       clearInterval(this.interval);
+      return;
     }
-    let currentDate = this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/,"");
-    while (this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/,"") === currentDate) {
+    let datas = [];
+    let currentDate = this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "");
+    while (currentDate && currentDate == this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "")) {
       let rowData = this.dataSet[this.current];
-      this.add(new QuakeSource(rowData.Longitude, rowData.Latitude));
+      datas.push([rowData.Latitude,rowData.Longitude]);
       this.current++;
     }
+    this.add(new QuakeSources(datas));
   }
 
   play() {
     this.interval = setInterval(() => {
       this.updatePoints();
-    }, 3);
+    }, 100);
   }
 }
 //rowData = {
