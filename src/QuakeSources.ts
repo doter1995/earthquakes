@@ -25,7 +25,7 @@ export default class QuakeSources extends Points {
   }
 
   setMaterial() {
-    let texture = new TextureLoader().load("./public/images/circle.png");
     this.material = new PointsMaterial({color: 0xff0000, size: 3, map: texture, transparent: true})
   }
 };
+let texture = new TextureLoader().load("./public/images/circle.png");

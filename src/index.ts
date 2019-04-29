@@ -1,8 +1,18 @@
 import WorldGroup from "./WordSegment";
 import Stats from "stats.js"
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
-import {Group, PerspectiveCamera, Scene, WebGLRenderer} from "three";
 import EarthQuakes from "./EarthQuakes";
+import Resource from "./Resource";
+import {
+  AudioListener,
+  DefaultLoadingManager,
+  Group,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer
+} from "three";
+
+import {renderYear} from "./Dom";
 
 let renderer = new WebGLRenderer({antialias: true});
 let scene = new Scene();
@@ -29,18 +39,22 @@ document.body.appendChild(stats.dom);
 
 let control = new OrbitControls(camera, renderer.domElement);
 control.autoRotate = true;
-
+let reYearnew =new renderYear(1998);
 function animate() {
   requestAnimationFrame(animate);
-
   control.update();
   renderer.render(scene, camera);
   stats.update();
 }
 
 animate();
+
+let res = new Resource(camera);
+DefaultLoadingManager.onLoad = function () {
+  console.log("loaded");
+};
 window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-})
+});

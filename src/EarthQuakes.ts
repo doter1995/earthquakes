@@ -22,13 +22,13 @@ export default class EarthQuakes extends Group {
   }
 
   updatePoints() {
-    if (this.current == this.dataSet.length) {
+    if (this.current >= this.dataSet.length) {
       clearInterval(this.interval);
       return;
     }
     let datas = [];
-    let currentDate = this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "");
-    while (currentDate && currentDate == this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "")) {
+    const currentDate = this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "");
+    while (this.current < this.dataSet.length && currentDate == this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "")) {
       let rowData = this.dataSet[this.current];
       datas.push([rowData.Latitude,rowData.Longitude]);
       this.current++;
