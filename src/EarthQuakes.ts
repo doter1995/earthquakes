@@ -1,7 +1,7 @@
 import {Group} from "three";
 import {csvParse} from "d3-dsv";
 import QuakeSources from './QuakeSources';
-
+import {updateYaer} from "./Dom"
 export default class EarthQuakes extends Group {
   dataSet = [];
   current: number = 0;
@@ -28,6 +28,7 @@ export default class EarthQuakes extends Group {
     }
     let datas = [];
     const currentDate = this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "");
+    updateYaer(currentDate);
     while (this.current < this.dataSet.length && currentDate == this.dataSet[this.current].Date.replace(/(\/[0-9]+\/)/, "")) {
       let rowData = this.dataSet[this.current];
       datas.push([rowData.Latitude,rowData.Longitude]);

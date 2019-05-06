@@ -5,7 +5,7 @@ import {
   PointsMaterial,
   TextureLoader
 } from "three";
-import {get3dPosition} from "./util";
+import {get2dPosition} from "./util";
 
 export default class QuakeSource extends Points {
   constructor(lat: number, lng: number, radius: number = 200) {
@@ -15,7 +15,7 @@ export default class QuakeSource extends Points {
   }
 
   setGeometry(lng, lat, radius) {
-    const v3 = get3dPosition(lng, lat, radius+1);
+    const v3 = get2dPosition(lng, lat, radius*2,radius);
     this.geometry = new BufferGeometry();
     this.geometry.addAttribute("position", new BufferAttribute(new Float32Array([v3.x, v3.y, v3.z]), 3));
   }

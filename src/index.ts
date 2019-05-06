@@ -16,7 +16,7 @@ import {renderYear} from "./Dom";
 
 let renderer = new WebGLRenderer({antialias: true});
 let scene = new Scene();
-let camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+let camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 3000);
 camera.position.setZ(400);
 let radius: number = 200;
 
@@ -38,7 +38,7 @@ let stats = new Stats();
 document.body.appendChild(stats.dom);
 
 let control = new OrbitControls(camera, renderer.domElement);
-control.autoRotate = true;
+// control.autoRotate = true;
 let reYearnew =new renderYear(1998);
 function animate() {
   requestAnimationFrame(animate);

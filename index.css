@@ -7,3 +7,12 @@ canvas {
   width: calc(100vw);
   height: calc(100vh);
 }
+.top{
+  position: fixed;
+  left: 10%;
+  color: #fff;
+  width: 80%;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}

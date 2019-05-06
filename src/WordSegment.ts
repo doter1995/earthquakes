@@ -8,7 +8,7 @@ import {
 } from 'three';
 import {range, pairs} from "d3-array";
 import {FileLoader} from "three"
-import {get3dPosition} from './util';
+import {get3dPosition , get2dPosition } from './util';
 import * as topoJson from "topojson";
 
 export default class WordSegment extends Group {
@@ -21,11 +21,11 @@ export default class WordSegment extends Group {
   }
 
   init() {
-    this.addSphere();
+    // this.addSphere();
     new FileLoader().load('./public/data/world.json', (data: string) => {
       let dataSet = JSON.parse(data);
-      this.add(wireframe(graticule10(), 200, new LineBasicMaterial({color: 0x444444})));
-      this.add(wireframe(topoJson.mesh(dataSet), 200.5, new LineBasicMaterial({color: 0x34ace0})));
+      this.add(wireframe2d(graticule10(), 200, new LineBasicMaterial({color: 0x444444})));
+      this.add(wireframe2d(topoJson.mesh(dataSet), 200, new LineBasicMaterial({color: 0x34ace0})));
       this.isLoad = true;
     }, (progressInfo) => {
       console.log("下载world.json", progressInfo.loaded / progressInfo.total)
@@ -48,7 +48,16 @@ function wireframe(multilinestring, radius, material) {
   });
   return new LineSegments(geometry, material);
 }
-
+function wireframe2d(multilinestring, radius, material) {
+  let geometry = new Geometry;
+  multilinestring.coordinates.forEach(function (line) {
+    pairs(
+        line.map((d) => get2dPosition(d[0], d[1], radius*2,radius*1,200)),
+        (a, b)=>{geometry.vertices.push(a, b);}
+    );
+  });
+  return new LineSegments(geometry, material);
+}
 function graticule10() {
   let epsilon = 1e-6,
       x1 = 180, x0 = -x1, y1 = 80, y0 = -y1, dx = 10, dy = 10,
